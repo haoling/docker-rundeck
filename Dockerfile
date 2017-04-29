@@ -22,6 +22,5 @@ RUN sed -i -e 's/# ja_JP.UTF-8 UTF-8/ja_JP.UTF-8 UTF-8/g' /etc/locale.gen
 RUN echo LANG=ja_JP.UTF-8 > /etc/locale.conf
 RUN locale-gen
 
-RUN curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "/tmp/awscli-bundle.zip"
-RUN unzip /tmp/awscli-bundle.zip -d /tmp
-RUN /tmp/awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
+ENV TZ=Asia/Tokyo
+ENV LANG=ja_JP.UTF-8
