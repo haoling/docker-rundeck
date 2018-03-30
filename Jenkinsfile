@@ -7,13 +7,13 @@ node('docker') {
     stage('Build') {
         def PARAM="."
         if (env.NO_CACHE.toBoolean()) PARAM="--no-cache ${PARAM}"
-        sh "sed -e 's#jordan/rundeck:latest#jordan/rundeck:${VERSION}#' Dockerfile"
+        sh "sed -i -e 's#jordan/rundeck:latest#jordan/rundeck:${VERSION}#' Dockerfile"
         app = docker.build("haoling/rundeck", PARAM)
         cleanWs()
     }
     stage('Push image') {
         docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
-            //app.push(VERSION);
+            app.push(VERSION);
         }
     }
 }
