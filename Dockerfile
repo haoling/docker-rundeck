@@ -1,9 +1,8 @@
 FROM jordan/rundeck:latest
 
-MAINTAINER Kazuhisa Yamamoto
-
-RUN apt-get update
-RUN apt-get install -y vim less locales task-japanese unzip
+RUN apt-get update &&\
+    apt-get install -y vim less locales task-japanese unzip &&\
+    apt-get clean && rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/*
 
 RUN { \
     echo '[mysqld]'; \
