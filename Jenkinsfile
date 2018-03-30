@@ -6,12 +6,12 @@ node('docker') {
         if (! env.VERSION) VERSION="latest"
     }
     stage('Build') {
-        def NO_CACHE_PARAM=""
-        if (env.NO_CACHE.toBoolean()) NO_CACHE_PARAM="--no-cache"
+        def PARAM="."
+        if (env.NO_CACHE.toBoolean()) PARAM="--no-cache ${PARAM}"
         sh """#!/bin/bash
             sed -i -e 's#jordan/rundeck:latest#jordan/rundeck:${VERSION}#' Dockerfile
         """
-        app = docker.build("haoling/rundeck", NO_CACHE_PARAM)
+        app = docker.build("haoling/rundeck", PARAM)
         cleanWs()
     }
     stage('Push image') {
