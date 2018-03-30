@@ -15,7 +15,7 @@ node('docker') {
         cleanWs()
     }
     stage('Push image') {
-        withDockerRegistry([credentialsId: 'docker-hub-credentials', url: 'https://hub.docker.com']) {
+        docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
             app.push(VERSION);
         }
     }
