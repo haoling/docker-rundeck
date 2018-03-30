@@ -1,6 +1,5 @@
 node('docker') {
     def app
-    def VERSION
     stage('Preparation') { // for display purposes
         checkout scm
         if (! VERSION) VERSION="latest"
