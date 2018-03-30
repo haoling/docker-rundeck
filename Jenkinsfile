@@ -1,9 +1,9 @@
 node('docker') {
     def app
-    def VERSION="latest"
+    def VERSION
     stage('Preparation') { // for display purposes
         checkout scm
-        if (! env.VERSION) VERSION=env.VERSION
+        if (! VERSION) VERSION="latest"
     }
     stage('Build') {
         def PARAM="."
