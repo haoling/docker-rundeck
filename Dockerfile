@@ -1,5 +1,7 @@
 FROM jordan/rundeck:latest
 
+ADD opt/run /opt/run
+
 RUN apt-get update &&\
     apt-get install -y vim less locales task-japanese unzip &&\
     apt-get clean && rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/*
