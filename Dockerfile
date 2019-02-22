@@ -26,7 +26,7 @@ RUN locale-gen
 RUN curl -LO https://bootstrap.pypa.io/get-pip.py &&\
     python get-pip.py &&\
     pip install --upgrade pip &&\
-    pip install requests websocket
+    pip install requests websocket websocket-client python-dateutil
 
 ENV TZ=Asia/Tokyo
 ENV LANG=ja_JP.UTF-8
